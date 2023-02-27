@@ -35,11 +35,15 @@ function App() {
   }
 
   const doneToDo = (id) => {
-    console.log(id)
-    const a = toDoList.filter((list) => list.id == id)
-    console.log(a)
-    setdoneToDoList([...donetoDoList, a['0']])
+    const newDoneList = toDoList.filter((list) => list.id == id)
+    setdoneToDoList([...donetoDoList, newDoneList['0']])
     setToDoList(toDoList.filter((list) => list.id !== id))
+  }
+
+  const cancelToDO = (id) => {//취소기능 넣기
+    const newCancelList = donetoDoList.filter((list) => list.id == id)
+    setToDoList([...toDoList, newCancelList['0']])
+    setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
   }
   return (
     <div>
@@ -70,6 +74,7 @@ function App() {
             <div>
               제목:{list.title}내용:{list.content}
               <button onClick={() => deleteToDO(list.id)}>삭재</button>
+              <button onClick={() => cancelToDO(list.id)}>취소</button>
             </div>
           )
         })}
