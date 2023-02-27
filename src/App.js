@@ -31,13 +31,14 @@ function App() {
 
   const deleteToDO = (id) => {
     setToDoList(toDoList.filter((list) => list.id !== id))
+    setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
   }
 
   const doneToDo = (id) => {
     console.log(id)
     const a = toDoList.filter((list) => list.id == id)
     console.log(a)
-    setdoneToDoList([...donetoDoList, a])
+    setdoneToDoList([...donetoDoList, a['0']])
     setToDoList(toDoList.filter((list) => list.id !== id))
   }
   return (
@@ -68,6 +69,7 @@ function App() {
           return (
             <div>
               제목:{list.title}내용:{list.content}
+              <button onClick={() => deleteToDO(list.id)}>삭재</button>
             </div>
           )
         })}
