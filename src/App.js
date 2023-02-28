@@ -4,13 +4,11 @@ import './App.css';
 function App() {
 
   const [toDoList, setToDoList] = useState([//useState안씀
-    { id: 1, title: '제목임1', content: '비어있음1', done: 0 },
-    { id: 2, title: '제목임2', content: '비어있음3', done: 0 },
-    { id: 3, title: '제목임2', content: '비어있음3', done: 0 },
+
   ])
 
   const [donetoDoList, setdoneToDoList] = useState([//useState안씀
-    { id: 4, title: '완료4', content: '완료4', done: 0 }
+
   ])
 
   const [toDoTitle, setToDoTitle] = useState('')
@@ -26,7 +24,14 @@ function App() {
       content: toDoContent,
       done: 0
     }
-    setToDoList([...toDoList, newtodolist])//멥 꼭 만들어주기
+
+    if (toDoContent == '' || toDoTitle == '') {
+      alert('값을 입력하세요')
+    } else {
+      setToDoList([...toDoList, newtodolist])//멥 꼭 만들어주기
+      setToDoTitle('')
+      setToDoContent('')
+    }
   }
 
   const deleteToDO = (id) => {
@@ -45,40 +50,47 @@ function App() {
     setToDoList([...toDoList, newCancelList['0']])
     setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
   }
+
   return (
-    <div>
-      <div>
+    <div className='todolist'>
 
-        제목<input value={toDoTitle} onChange={titleHander} />
-        내용<input value={toDoContent} onChange={contentHander} />
-
-        <button onClick={addToDO}>추가</button>
-
+      <div className='top'>
+        <div className='title'><span>Todolist</span></div>
+        <div className='write'>
+          <input value={toDoTitle} onChange={titleHander} placeholder="제목을 입력하세요" required />
+          <input value={toDoContent} onChange={contentHander} placeholder="내용을 입력하세요" required />
+          <br />
+          <button className="w-btn-outline1 w-btn-green-outline" onClick={addToDO}>추가</button>
+        </div>
       </div>
-      <div>
-        todolist<br />
+
+      <div className='showlist'>
+        <div className='showtitle'>Working🆙</div>
         {toDoList.map((list) => {
           return (
-            <div>
-              제목:{list.title}내용:{list.content}
-              <button onClick={() => deleteToDO(list.id)}>삭재</button>
-              <button onClick={() => doneToDo(list.id)}>완료</button>
+            <div className='todo'>
+              <button className="w-btn-outline w-btn-red-outline" onClick={() => deleteToDO(list.id)}>삭재</button>
+              <button className="w-btn-outline w-btn-green-outline" onClick={() => doneToDo(list.id)}>완료</button><br />
+              제목:{list.title}<br />내용:{list.content}
             </div>
           )
         })}
       </div>
-      <div>
-        완료했다
+
+      <div className='showlist'>
+        <div className='showtitle'>Done✅</div>
         {donetoDoList.map((list) => {
           return (
-            <div>
-              제목:{list.title}내용:{list.content}
-              <button onClick={() => deleteToDO(list.id)}>삭재</button>
-              <button onClick={() => cancelToDO(list.id)}>취소</button>
+            <div className='todo'>
+              <button className="w-btn-outline w-btn-red-outline" onClick={() => deleteToDO(list.id)}>삭재</button>
+              <button className="w-btn-outline w-btn-green-outline" onClick={() => cancelToDO(list.id)}>취소</button><br />
+              <div>제목:{list.title}</div>
+              <div>내용:{list.content}</div>
             </div>
           )
         })}
       </div>
+
     </div >
   )
 }
