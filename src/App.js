@@ -7,9 +7,9 @@ function App() {
 
   ])
 
-  const [donetoDoList, setdoneToDoList] = useState([//useState안씀
+  // const [donetoDoList, setdoneToDoList] = useState([//useState안씀
 
-  ])
+  // ])
 
   const [toDoTitle, setToDoTitle] = useState('')
   const [toDoContent, setToDoContent] = useState('')
@@ -22,7 +22,7 @@ function App() {
       id: toDoList.length + 1,
       title: toDoTitle,
       content: toDoContent,
-      done: 0
+      isDone: false
     }
 
     if (toDoContent == '' || toDoTitle == '') {
@@ -36,19 +36,26 @@ function App() {
 
   const deleteToDO = (id) => {
     setToDoList(toDoList.filter((list) => list.id !== id))
-    setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
+    // setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
   }
 
-  const doneToDo = (id) => {
-    const newDoneList = toDoList.filter((list) => list.id == id)
-    setdoneToDoList([...donetoDoList, newDoneList['0']])
-    setToDoList(toDoList.filter((list) => list.id !== id))
+  const doneToDo = (id) => {//isdon값 만지기
+    //그 고유id의 isdone 값을 true로 바꿔라
+    setToDoList(toDoList.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isDone: true };
+      }
+      return todo;
+    }))
   }
 
   const cancelToDO = (id) => {//취소기능 넣기
-    const newCancelList = donetoDoList.filter((list) => list.id == id)
-    setToDoList([...toDoList, newCancelList['0']])
-    setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
+    setToDoList(toDoList.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isDone: false };
+      }
+      return todo;
+    }))
   }
 
   return (
@@ -61,17 +68,20 @@ function App() {
           <input value={toDoContent} onChange={contentHander} placeholder="내용을 입력하세요" required />
           <br />
           <button className="w-btn-outline1 w-btn-green-outline" onClick={addToDO}>추가</button>
+
         </div>
       </div>
 
       <div className='showlist'>
         <div className='showtitle'>Working🆙</div>
-        {toDoList.map((list) => {
+        {toDoList.filter((e) => e.isDone == false).map((list) => {
           return (
             <div className='todo'>
               <button className="w-btn-outline w-btn-red-outline" onClick={() => deleteToDO(list.id)}>삭재</button>
               <button className="w-btn-outline w-btn-green-outline" onClick={() => doneToDo(list.id)}>완료</button><br />
-              제목:{list.title}<br />내용:{list.content}
+              <div>제목:{list.title}</div>
+              <div>내용:{list.content}</div>
+
             </div>
           )
         })}
@@ -79,8 +89,9 @@ function App() {
 
       <div className='showlist'>
         <div className='showtitle'>Done✅</div>
-        {donetoDoList.map((list) => {
+        {toDoList.filter((e) => e.isDone == true).map((list) => {
           return (
+
             <div className='todo'>
               <button className="w-btn-outline w-btn-red-outline" onClick={() => deleteToDO(list.id)}>삭재</button>
               <button className="w-btn-outline w-btn-green-outline" onClick={() => cancelToDO(list.id)}>취소</button><br />
