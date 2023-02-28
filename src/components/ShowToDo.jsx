@@ -18,7 +18,7 @@ function ShowToDo({ toDoList, setToDoList }) {
   return (
     <div className='showlist'>
       <div className='showtitle'>Working...🔥</div>
-      {toDoList.filter((e) => e.isDone == false).map((list) => {
+      {toDoList.filter((e) => e.isDone === false).map((list) => {
         return (
           <div className='todo'>
             <button className="w-btn-outline w-btn-red-outline" onClick={() => deleteToDO(list.id)}>삭재</button>
