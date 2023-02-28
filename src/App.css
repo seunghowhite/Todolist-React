@@ -86,7 +86,7 @@
 }
 
 .showtitle {
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 10px;
   color: #3884ff;
   font-weight: bold;
