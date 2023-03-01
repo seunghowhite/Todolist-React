@@ -1,4 +1,5 @@
 import React from 'react'
+import Buttons from './Buttons'
 
 function ShowToDo({ toDoList, setToDoList }) {
   const deleteToDO = (id) => {
@@ -21,8 +22,9 @@ function ShowToDo({ toDoList, setToDoList }) {
       {toDoList.filter((e) => e.isDone === false).map((list) => {
         return (
           <div className='todo'>
-            <button className="w-btn-outline w-btn-red-outline" onClick={() => deleteToDO(list.id)}>삭재</button>
-            <button className="w-btn-outline w-btn-green-outline" onClick={() => doneToDo(list.id)}>완료</button><br />
+            <Buttons deleteToDO={deleteToDO} id={list.id}>삭재</Buttons>
+            <Buttons doneToDo={doneToDo} id={list.id}>완료</Buttons>
+
             <div>제목:{list.title}</div>
             <div>내용:{list.content}</div>
           </div>

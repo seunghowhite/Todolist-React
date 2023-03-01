@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Buttons from './Buttons'
 
 function InputToDo({ toDoList, setToDoList }) {
   // const [toDoList, setToDoList] = useState([//useState안씀
@@ -35,7 +36,8 @@ function InputToDo({ toDoList, setToDoList }) {
         <input value={toDoTitle} onChange={titleHander} placeholder="제목을 입력하세요" required />
         <input value={toDoContent} onChange={contentHander} placeholder="내용을 입력하세요" required />
         <br />
-        <button className="w-btn-outline1 w-btn-green-outline" onClick={addToDO}>추가</button>
+        <Buttons addToDO={addToDO}>추가</Buttons>
+
 
       </div>
     </div>
