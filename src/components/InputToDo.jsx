@@ -19,7 +19,7 @@ function InputToDo({ toDoList, setToDoList }) {
       isDone: false
     }
 
-    if (toDoContent == '' || toDoTitle == '') {
+    if (toDoContent === '' || toDoTitle === '') {
       alert('값을 입력하세요')
     } else {
       setToDoList([...toDoList, newtodolist])//멥 꼭 만들어주기

@@ -5,7 +5,8 @@ import ShowToDo from './ShowToDo'
 
 function LayOut() {
 
-  const [toDoList, setToDoList] = useState([//useState안씀
+  const [toDoList, setToDoList] = useState([
+    { id: 1, title: '제목', content: '콘탠츠', isDone: false }
 
   ])
 
