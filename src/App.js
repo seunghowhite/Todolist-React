@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   const [toDoList, setToDoList] = useState([
-    { id: 1, title: '제목', content: '콘탠츠', isDone: false }
+    { id: 1, title: '리액트 공부하기', content: '기본을 중요하게', isDone: false }
 
   ])
 

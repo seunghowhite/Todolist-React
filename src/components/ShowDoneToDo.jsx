@@ -20,10 +20,10 @@ function ShowDoneToDo({ toDoList, setToDoList }) {
       {toDoList.filter((e) => e.isDone === true).map((list) => {
         return (
           <div key={list.id} className='todo'>
+            <div className='todotitle'>{list.title}</div>
+            <div className='content'>{list.content}</div>
             <Buttons deleteToDO={deleteToDO} id={list.id}>삭재</Buttons>
             <Buttons cancelToDO={cancelToDO} id={list.id}>취소</Buttons>
-            <div>제목:{list.title}</div>
-            <div>내용:{list.content}</div>
           </div>
         )
       })}

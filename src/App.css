@@ -96,8 +96,25 @@
   text-shadow: 3px 3px rgba(240, 209, 7, 0.763);
 }
 
+.content {
+
+  text-align: start;
+  height: 110px;
+  padding-top: 10px;
+  margin: 0px 2% 5px 2%;
+  overflow: auto;
+}
+
+.todotitle {
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 10px;
+  background-color: #444874;
+  text-align: center;
+}
 
 .todo {
+  text-align: end;
   position: relative;
   justify-content: center;
   font-family: "paybooc-Light", sans-serif;
@@ -106,7 +123,7 @@
   word-break: break-all;
   outline: solid 2px rgba;
   border-radius: 10px;
-  width: 250px;
+  width: 200px;
   height: 200px;
   margin: 10px 1% 10px 2%;
   background-color: white;
