@@ -3,12 +3,10 @@ import React from 'react'
 function ShowDoneToDo({ toDoList, setToDoList }) {
   const deleteToDO = (id) => {
     setToDoList(toDoList.filter((list) => list.id !== id))
-    // setdoneToDoList(donetoDoList.filter((list) => list.id !== id))
   }
 
 
-
-  const cancelToDO = (id) => {//취소기능 넣기
+  const cancelToDO = (id) => {
     setToDoList(toDoList.map((todo) => {
       if (todo.id === id) {
         return { ...todo, isDone: false };
